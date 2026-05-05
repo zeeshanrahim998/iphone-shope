@@ -700,35 +700,165 @@
 // const styles = StyleSheet.create({});
 
 
-//...................................  project iphon shop ..................
+//...................................  project iphon shop ........................
+//.................................exmple of stake navigation...........................
 
+
+// import { StyleSheet, Text, View } from 'react-native'
+// import React from 'react'
+// import Search from './src/iphoneshop/search.jsx'
+// import Home from './src/iphoneshop/Home.jsx'
+// import profile from './src/iphoneshop/profile.jsx'
+// import { NavigationContainer } from '@react-navigation/native'
+// import { createNativeStackNavigator } from '@react-navigation/native-stack'
+
+// const Stack= createNativeStackNavigator();
+
+// const App = () => {
+
+//   return (
+    
+//     <NavigationContainer>
+//      <Stack.Navigator initialRouteName='search'
+     
+//      screenOptions={{ headerStyle:{backgroundColor:'#438de7e3' },  //appying on all pages
+//       headerTintColor:'black',
+//       headerShown: true}
+//      }>
+
+//       <Stack.Screen 
+//       name='search' 
+//       component={Search}
+//       options={{headerStyle:{backgroundColor:'#438de7e3'},        //style applie on one page
+//               headerTintColor:'black',
+//               // headerShown: false
+//           }} />
+//       <Stack.Screen name='Home' component={Home} />
+//       <Stack.Screen name='profile' component={profile} />
+//      </Stack.Navigator>
+
+//     </NavigationContainer>
+    
+   
+//   )
+// }
+
+// export default App
+
+// const styles = StyleSheet.create({})
+
+
+
+
+//..........................................bottom navigation ...............................
+
+
+
+// import { StyleSheet, Text, View } from 'react-native';
+// import React from 'react';
+// import Home from './src/bottomTabNavigation/Home.jsx';
+// import profile from './src/bottomTabNavigation/Profile.jsx';
+// import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+// import { NavigationContainer } from '@react-navigation/native';
+// import Entypo from 'react-native-vector-icons/Entypo'
+// import AntDesign from 'react-native-vector-icons/AntDesign'
+
+// const Tab = createBottomTabNavigator();
+// const Tabnavigator = ()=>( 
+//   <Tab.Navigator 
+//   screenOptions={{
+//     tabBarActiveBackgroundColor:'tomato', 
+//     tabBarInactiveBackgroundColor:'#908e8e52', 
+//     tabBarActiveTintColor:'white',
+//     tabBarInactiveTintColor:'black',}
+//     } >
+//     <Tab.Screen name='Home' component= {Home} 
+//     options={{
+//       tabBarIcon : ({Color,size})=> (
+     
+//         <Entypo name='home' color={"white"}  size={size}/> 
+//      ) 
+//     }}/>
+//     <Tab.Screen name='profile' component= {profile}
+//      options={{
+//       tabBarActiveBackgroundColor:'tomato',
+//        tabBarInactiveBackgroundColor:'gray',
+//         tabBarActiveTintColor:'white',
+//       tabBarIcon : ({color,size})=>(
+//         <AntDesign  name= 'profile'  color ={color} size={size}  />
+//       )
+//       }}
+//    />
+
+//   </Tab.Navigator>
+ 
+//  )
+// const App = () => {
+//   return (
+//    <NavigationContainer>
+
+//    < Tabnavigator />
+//    </NavigationContainer>
+//   )
+// }
+
+// export default App
+
+// const styles = StyleSheet.create({})
+
+
+//.................................nisting navigation..................................
 
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import Search from './src/iphoneshop/search.jsx'
-import Home from './src/iphoneshop/Home.jsx'
-import profile from './src/iphoneshop/profile.jsx'
+import Home from  './src/bottomTabNavigation/Home'
+import profile from  './src/bottomTabNavigation/Profile'
+import Search from  './src/bottomTabNavigation/Search'
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import Deatail from './src/bottomTabNavigation/Deatail'
 
-const Stack= createNativeStackNavigator();
+const Stack = createNativeStackNavigator();
+const Stacknavigation = () =>(
+ < Stack.Navigator>
+  <Stack.Screen    name='HOME'      component={Home} 
+  options={{headerShown:false}}/>
+  <Stack.Screen name = "Deatail" component={Deatail} />
+   <Stack.Screen name = "profile " component={profile} />
+ </Stack.Navigator>
+)
+const Stacknavigation2 = ()=>(
+   <Stack.Navigator>
+  
+   <Stack.Screen 
+   name = "profile "
+    component={profile}
+    options={{headerShown:false}}
+    />
+ </Stack.Navigator>
+)
+
+const Tab= createBottomTabNavigator();
+const Tabnavigation = () =>( 
+  <Tab.Navigator>
+
+<Tab.Screen   name = 'Home page'      component={Stacknavigation}  />
+<Tab.Screen   name = 'Profile'   component={Stacknavigation2} />
+<Tab.Screen   name = 'Search'    component={Search} />
+ 
+  </Tab.Navigator>
+  )
 
 const App = () => {
-
   return (
-    
-    <NavigationContainer>
-     <Stack.Navigator initialRouteName='search'>
-
-      <Stack.Screen name='search' component={Search} />
-      <Stack.Screen name='Home' component={Home} />
-      <Stack.Screen name='profile' component={profile} />
-     </Stack.Navigator>
-
-    </NavigationContainer>
-    
    
-  )
+ <NavigationContainer>
+
+   <Tabnavigation />
+   
+    </NavigationContainer> 
+  )    
 }
 
 export default App
